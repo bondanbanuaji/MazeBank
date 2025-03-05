@@ -36,6 +36,11 @@
 }
 
 /* Login Form */
+
+#choice-prompt-text {
+    -fx-font-weight: 400;
+}
+
 .login_form_container {
     -fx-spacing: 15;
     -fx-alignment: top_left;
