@@ -1,0 +1,18 @@
+.login_container {
+    -fx-background-color: #EEEEEE;
+}
+
+/*Container Logo*/
+.login_logo_container {
+    -fx-background-color: #132A13;
+    -fx-alignment: center;
+}
+
+.login_logo_container Text {
+    -fx-font-sze: 2em;
+    -fx-fill: #FFFFFF;
+}
+
+.login_logo_container FontAwesomeIconView {
+    -fx-fill: #ECF39E;
+}
