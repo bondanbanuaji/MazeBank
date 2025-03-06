@@ -22,7 +22,7 @@
     -fx-background-color: #ECF39E;
 }
 
-.account_selector label {
+.account_selector Label {
     -fx-text-fill: #132A13;
     -fx-font-size: 1.1em;
 }
@@ -46,9 +46,9 @@
     -fx-alignment: top_left;
 }
 
-.login_form_container label {
+.login_form_container Label {
     -fx-font-size: 1.1em;
-    -fx-font-weight:  bold;
+    -fx-font-weight: bold;
 }
 
 .input_field {
