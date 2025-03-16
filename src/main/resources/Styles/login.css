@@ -4,13 +4,17 @@
 
 /*Container Logo*/
 .login_logo_container {
-    -fx-background-color: #132A13;
+    -fx-background-color: linear-gradient(to right, #132A13, #1E3B1E);
     -fx-alignment: center;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 8, 0, 0, 5);
 }
 
 .login_logo_container Text {
-    -fx-font-sze: 2em;
+    -fx-font-size: 2em;
     -fx-fill: #FFFFFF;
+    -fx-font-weight: bold;
 }
 
 .login_logo_container FontAwesomeIconView {
@@ -58,17 +62,29 @@
 }
 
 .login_form_container Button {
-    -fx-background-color: #132A13;
+    -fx-background-color: linear-gradient(to right, #132A13, #1E3B1E);
     -fx-text-fill: #FFFFFF;
     -fx-pref-width: 350;
-    -fx-pref-height: 30;
+    -fx-pref-height: 40;
     -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 3);
+    -fx-transition: all 0.3s ease-in-out;
 }
 
 .login_form_container Button:hover {
     -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to right, #1E3B1E, #285A28);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 6, 0, 0, 4);
+}
+
+.login_form_container Button:pressed {
+    -fx-background-color: #0F1F0F;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 7, 0, 0, 5);
 }
 
 .error_lbl {
     -fx-text-fill: #FF0000;
+    -fx-font-weight: bold;
 }
