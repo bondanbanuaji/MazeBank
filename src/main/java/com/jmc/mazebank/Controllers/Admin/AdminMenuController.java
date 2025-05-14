@@ -1,6 +1,8 @@
 package com.jmc.mazebank.Controllers.Admin;
 
 import com.jmc.mazebank.Models.Model;
+import com.jmc.mazebank.Views.AdminMenuOptions;
+import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -15,12 +17,30 @@ public class AdminMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addListener();
+
+        addListeners();
     }
 
-    private void addListener(){}
+    private void addListeners(){
+        create_client_btn.setOnAction(Event ->onCreateClient());
+        clients_btn.setOnAction(Event ->onClients());
+        deposit_btn.setOnAction(Event -> onDeposit());
+        logout_btn.setOnAction(Event -> onLogout());
+    }
 
     private void onCreateClient(){
-        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set("Create Client");
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CREATE_CLIENT);
+    }
+    private void onClients () {
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CLIENTS);
+    }
+
+    private void onDeposit() {
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.DEPOSIT);
+    }
+    private void onLogout() {
+        Model.getInstance().getViewFactory().closeAdminWindow();
+        Model.getInstance().getViewFactory().showLoginWindow();
     }
 }
+

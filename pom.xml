@@ -113,6 +113,20 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>  </dependencies>
+<!--  &lt;!&ndash; DITAMBAHKAN: Logging with SLF4J API &ndash;&gt;-->
+<!--  <dependency>-->
+<!--    <groupId>org.slf4j</groupId>-->
+<!--    <artifactId>slf4j-api</artifactId>-->
+<!--    <version>2.0.13</version>-->
+<!--  </dependency>-->
+
+<!--  &lt;!&ndash; DITAMBAHKAN: Logback sebagai implementasi SLF4J &ndash;&gt;-->
+<!--  <dependency>-->
+<!--    <groupId>ch.qos.logback</groupId>-->
+<!--    <artifactId>logback-classic</artifactId>-->
+<!--    <version>1.4.14</version>-->
+<!--  </dependency>-->
+<!--</dependencies>-->
 
   <build>
     <plugins>
