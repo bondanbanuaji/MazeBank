@@ -25,6 +25,24 @@ public class Client {
         this.dateCreated = new SimpleObjectProperty<>(this,"Date",date);
     }
 
+    public Client(String payeeAddress, String fullName, int balance, StringProperty firstName, StringProperty lastName, StringProperty payeeAddress1, ObjectProperty<Account> checkingAccount, ObjectProperty<Account> savingsAccount, ObjectProperty<LocalDate> dateCreated) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.payeeAddress = payeeAddress1;
+        this.checkingAccount = checkingAccount;
+        this.savingsAccount = savingsAccount;
+        this.dateCreated = dateCreated;
+    }
+//
+//    public Client(String payeeAddress, String fullName, int balance, StringProperty firstName, StringProperty lastName, StringProperty payeeAddress1, ObjectProperty<Account> checkingAccount, ObjectProperty<Account> savingsAccount, ObjectProperty<LocalDate> dateCreated) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.payeeAddress = payeeAddress1;
+//        this.checkingAccount = checkingAccount;
+//        this.savingsAccount = savingsAccount;
+//        this.dateCreated = dateCreated;
+//    }
+
     public StringProperty firstNameProperty() {return firstName;}
 
     public StringProperty lastNameProperty() {return lastName;}
