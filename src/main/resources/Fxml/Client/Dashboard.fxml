@@ -63,11 +63,6 @@
       <TextField fx:id="amount_fld" />
       <Label text="Message (Optional)" />
       <TextArea fx:id="message_fld" prefHeight="70.0" prefWidth="200.0" />
-<<<<<<< HEAD
-<!--      <Button fx:id="send_money_btn" mnemonicParsing="false" text="Send Money" />-->
       <Button fx:id="send_money_btn" mnemonicParsing="false" text="Send Money" onAction="#onSendMoney" />
-=======
-      <Button fx:id="send_money_btn" text="Send" onAction="#onSendMoney"/>
->>>>>>> fc6b3983eac5c5f94104653ac5e139cba8f5c995
    </VBox>
 </AnchorPane>
