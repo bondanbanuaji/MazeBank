@@ -31,7 +31,7 @@ public class DashboardController implements Initializable {
         String payee = payee_fld.getText();
         String amountText = amount_fld.getText();
         String message = message_fld.getText();
-        String sender = user_name.getText(); // pastikan Text ini berisi Payee pengirim
+        String sender = user_name.getText(); // payee pengiriman
         String date = java.time.LocalDate.now().toString();
 
         if (payee.isEmpty() || amountText.isEmpty()) {
