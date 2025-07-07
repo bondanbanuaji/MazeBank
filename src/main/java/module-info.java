@@ -21,4 +21,17 @@ module com.jmc.mazebank {
     exports com.jmc.mazebank.Controllers.Client;
     exports com.jmc.mazebank.Models;
     exports com.jmc.mazebank.Views;
+
+
+
+//    requires javafx.controls;
+//    requires javafx.fxml;
+
+//    opens com.jmc.mazebank to javafx.fxml;
+    opens com.jmc.mazebank.Controllers to javafx.fxml;
+    opens com.jmc.mazebank.Controllers.Client to javafx.fxml;
+//
+//    exports com.jmc.mazebank;
+//    exports com.jmc.mazebank.Controllers;
+//    exports com.jmc.mazebank.Controllers.Client;
 }

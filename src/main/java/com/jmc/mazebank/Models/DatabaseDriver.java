@@ -8,17 +8,14 @@ import java.util.List;
 public class DatabaseDriver {
     private static final String DB_URL = "jdbc:sqlite:mazebank.db";
 
-    // Inisialisasi database saat pertama kali dijalankan
     public DatabaseDriver() {
         initializeDatabase();
     }
 
-    // Method untuk mendapatkan koneksi
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DB_URL);
     }
 
-    // Inisialisasi struktur database
     private void initializeDatabase() {
         String createClientsTable = "CREATE TABLE IF NOT EXISTS Clients (" +
                 "PayeeAddress TEXT PRIMARY KEY, " +
@@ -43,8 +40,6 @@ public class DatabaseDriver {
             System.err.println("Gagal inisialisasi database: " + e.getMessage());
         }
     }
-
-    // Validasi login client
     public boolean isValidClient(String pAddress, String password) {
         String sql = "SELECT 1 FROM Clients WHERE PayeeAddress = ? AND Password = ?";
         try (Connection conn = getConnection();
@@ -60,7 +55,6 @@ public class DatabaseDriver {
         }
     }
 
-    // Mendapatkan data client
     public ResultSet getClientData(String pAddress, String password) {
         String sql = "SELECT * FROM Clients WHERE PayeeAddress = ? AND Password = ?";
         try {
@@ -75,7 +69,6 @@ public class DatabaseDriver {
         }
     }
 
-    // Menyimpan transaksi
     public boolean insertTransaction(String sender, String receiver, double amount, String message, String date) {
         String sql = "INSERT INTO Transactions (Sender, Receiver, Amount, Date, Message) VALUES (?, ?, ?, datetime('now'), ?)";
         try (Connection conn = getConnection();
@@ -91,7 +84,6 @@ public class DatabaseDriver {
         }
     }
 
-    // Mendapatkan semua transaksi
     public List<String> getAllTransactions() {
         List<String> transactions = new ArrayList<>();
         String sql = "SELECT * FROM Transactions ORDER BY Date DESC";
@@ -112,5 +104,81 @@ public class DatabaseDriver {
             System.err.println("Error mengambil transaksi: " + e.getMessage());
         }
         return transactions;
+    }
+    public List<Transaction> getTransactionsForUser(String username) {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM Transactions WHERE Sender = ? OR Receiver = ? ORDER BY Date DESC";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, username);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Transaction transaction = new Transaction(
+                        rs.getString("Sender"),
+                        rs.getString("Receiver"),
+                        rs.getDouble("Amount"),
+                        rs.getString("Date"),
+                        rs.getString("Message")
+                );
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error mengambil transaksi untuk user: " + e.getMessage());
+        }
+
+        return transactions;
+    }
+    public List<Transaction> getLatestTransactionsForUser(String payeeAddress, int limit) {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM Transactions " +
+                "WHERE Sender = ? OR Receiver = ? " +
+                "ORDER BY Date DESC " +
+                "LIMIT ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, payeeAddress);
+            stmt.setString(2, payeeAddress);
+            stmt.setInt(3, limit);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Transaction transaction = new Transaction(
+                        rs.getString("Sender"),
+                        rs.getString("Receiver"),
+                        rs.getDouble("Amount"),
+                        rs.getString("Date"),
+                        rs.getString("Message")
+                );
+                transactions.add(transaction);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error mengambil transaksi terbaru: " + e.getMessage());
+        }
+
+        return transactions;
+    }
+
+    public ResultSet getLatestTransactionsResultSet(String payeeAddress, int limit) throws SQLException {
+        String sql = "SELECT * FROM Transactions " +
+                "WHERE Sender = ? OR Receiver = ? " +
+                "ORDER BY Date DESC " +
+                "LIMIT ?";
+
+        Connection conn = getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, payeeAddress);
+        stmt.setString(2, payeeAddress);
+        stmt.setInt(3, limit);
+
+        return stmt.executeQuery();
+    }
+    public Connection connect() throws SQLException {
+        return DriverManager.getConnection(DB_URL);
     }
 }

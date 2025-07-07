@@ -13,7 +13,7 @@
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="820.0" styleClass="search_box" stylesheets="@../../Styles/Deposit.css">
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search By Payee Address" />
          <TextField fx:id="pAddress_fld" />
-         <Button fx:id="search_btn" mnemonicParsing="false" text="Button" />
+         <Button fx:id="search_btn" mnemonicParsing="false" text="Search" />
       </HBox>
       <ListView fx:id="result_listview" prefHeight="200.0" prefWidth="820.0" styleClass="search_box" stylesheets="@../../Styles/Deposit.css" />
       <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="315.0" prefWidth="100.0" styleClass="deposit_box" stylesheets="@../../Styles/Deposit.css">

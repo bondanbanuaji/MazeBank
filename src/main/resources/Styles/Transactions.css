@@ -17,3 +17,39 @@
     -fx-background-color: #EEEEEE;
     -fx-pref-width: 800;
 }
+/* Tambahkan di Transactions.css */
+
+.latest-transactions-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+.section-icon {
+    -fx-fill: #4a90e2;
+    -fx-glyph-size: 16px;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.latest-transactions-list {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.latest-transactions-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 5 0;
+}
+
+.latest-transactions-list .list-cell:filled:hover {
+    -fx-background-color: #f5f5f5;
+}

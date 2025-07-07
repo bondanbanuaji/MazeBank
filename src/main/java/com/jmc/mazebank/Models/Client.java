@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Client {
     private final StringProperty firstName ;
@@ -33,6 +34,20 @@ public class Client {
         this.savingsAccount = savingsAccount;
         this.dateCreated = dateCreated;
     }
+
+    public Client(String payeeAddress, String firstName, String lastName, String password, String date) {
+        this.firstName = new SimpleStringProperty(this, "FirstName", firstName);
+        this.lastName = new SimpleStringProperty(this, "LastName", lastName);
+        this.payeeAddress = new SimpleStringProperty(this, "Payee Address", payeeAddress);
+        this.checkingAccount = new SimpleObjectProperty<>(this, "Checking Account", null);
+        this.savingsAccount = new SimpleObjectProperty<>(this, "Savings Account", null);
+//        this.dateCreated = new SimpleObjectProperty<>(this, "Date", LocalDate.parse(date));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+        LocalDate parsedDate = LocalDate.parse(date, formatter);
+        this.dateCreated = new SimpleObjectProperty<>(this, "Date", parsedDate);
+
+    }
+
 //
 //    public Client(String payeeAddress, String fullName, int balance, StringProperty firstName, StringProperty lastName, StringProperty payeeAddress1, ObjectProperty<Account> checkingAccount, ObjectProperty<Account> savingsAccount, ObjectProperty<LocalDate> dateCreated) {
 //        this.firstName = firstName;
@@ -54,4 +69,8 @@ public class Client {
     public ObjectProperty<Account> savingsAccountProperty() {return savingsAccount;}
 
     public ObjectProperty<LocalDate> dateProperty() {return dateCreated;}
+
+//    public Client(String pAddress, String fName, String lName, String date) {
+//    }
+
 }

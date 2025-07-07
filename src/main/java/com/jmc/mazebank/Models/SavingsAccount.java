@@ -4,7 +4,6 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class SavingsAccount extends Account{
-    // Batas Penarikan Dari Tabungan
     private final DoubleProperty withdrawalLimit;
 
     public SavingsAccount(String owner,String accountNumber, double balance, double withdrawalLimit) {

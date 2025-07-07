@@ -3,28 +3,64 @@ package com.jmc.mazebank.Models;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Transaction {
     private final StringProperty sender;
     private final StringProperty receiver;
-    private final DoubleProperty amount ;
-    private final ObjectProperty <LocalDate>date ;
+    private final DoubleProperty amount;
+    private final ObjectProperty<LocalDate> date;
     private final StringProperty message;
 
-    public Transaction(String sender,String receiver , double amount,LocalDate date,String message) {
-        this.sender = new SimpleStringProperty(this, "Sender",sender); // Sender?
-        this.receiver = new SimpleStringProperty(this, "Receiver",receiver);
-        this.amount = new SimpleDoubleProperty(this,"Amount",amount);
-        this.date = new SimpleObjectProperty<>(this, "Date",date);
-        this.message = new SimpleStringProperty(this,"Message",message);
+    public Transaction(String sender, String receiver, double amount, String date, String message) {
+        this.sender = new SimpleStringProperty(this, "Sender", sender);
+        this.receiver = new SimpleStringProperty(this, "Receiver", receiver);
+        this.amount = new SimpleDoubleProperty(this, "Amount", amount);
+        this.date = new SimpleObjectProperty<>(this, "Date",
+                LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toLocalDate()
+        );
+        this.message = new SimpleStringProperty(this, "Message", message);
     }
-    public StringProperty senderProperty() {return this.sender;}
 
-    public StringProperty receiverProperty() {return this.receiver;}
+    public Transaction(String sender, String receiver, double amount, LocalDate date, String message) {
+        this.sender = new SimpleStringProperty(this, "Sender", sender);
+        this.receiver = new SimpleStringProperty(this, "Receiver", receiver);
+        this.amount = new SimpleDoubleProperty(this, "Amount", amount);
+        this.date = new SimpleObjectProperty<>(this, "Date", date);
+        this.message = new SimpleStringProperty(this, "Message", message);
+    }
 
-    public DoubleProperty amountProperty() {return this.amount;}
+    // Getters
+    public String getSender() {
+        return sender.get();
+    }
 
-    public ObjectProperty <LocalDate> dateProperty() {return this.date;}
+    public String getReceiver() {
+        return receiver.get();
+    }
 
-    public StringProperty messageProperty() {return this.message;}
+    public double getAmount() {
+        return amount.get();
+    }
+
+    public String getDate() {
+        return date.get().toString(); // yyyy-MM-dd
+    }
+
+    public String getMessage() {
+        return message.get();
+    }
+
+    public String getFormattedDate() {
+        return date.get().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+    }
+
+    public StringProperty senderProperty() { return sender; }
+    public StringProperty receiverProperty() { return receiver; }
+    public DoubleProperty amountProperty() { return amount; }
+    public ObjectProperty<LocalDate> dateProperty() { return date; }
+    public StringProperty messageProperty() { return message; }
+
+
 }
