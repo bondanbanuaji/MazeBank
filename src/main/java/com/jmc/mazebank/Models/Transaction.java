@@ -13,15 +13,51 @@ public class Transaction {
     private final ObjectProperty<LocalDate> date;
     private final StringProperty message;
 
-    public Transaction(String sender, String receiver, double amount, String date, String message) {
-        this.sender = new SimpleStringProperty(this, "Sender", sender);
-        this.receiver = new SimpleStringProperty(this, "Receiver", receiver);
-        this.amount = new SimpleDoubleProperty(this, "Amount", amount);
-        this.date = new SimpleObjectProperty<>(this, "Date",
-                LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toLocalDate()
-        );
-        this.message = new SimpleStringProperty(this, "Message", message);
+//    public Transaction(String sender, String receiver, double amount, String date, String message) {
+//        this.sender = new SimpleStringProperty(this, "Sender", sender);
+//        this.receiver = new SimpleStringProperty(this, "Receiver", receiver);
+//        this.amount = new SimpleDoubleProperty(this, "Amount", amount);
+////        this.date = new SimpleObjectProperty<>(this, "Date",
+////                LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toLocalDate());
+////        this.date = new SimpleObjectProperty<>(this, "Date",
+////                LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+////        );
+//        DateTimeFormatter formatter;
+//        if (date.length() > 10) {
+//            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//            this.date = new SimpleObjectProperty<>(this, "Date",
+//                    LocalDateTime.parse(date, formatter).toLocalDate()
+//            );
+//        } else {
+//            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            this.date = new SimpleObjectProperty<>(this, "Date",
+//                    LocalDate.parse(date, formatter)
+//            );
+//        }
+//
+//        this.message = new SimpleStringProperty(this, "Message", message);
+//    }
+public Transaction(String sender, String receiver, double amount, String date, String message) {
+    this.sender = new SimpleStringProperty(this, "Sender", sender);
+    this.receiver = new SimpleStringProperty(this, "Receiver", receiver);
+    this.amount = new SimpleDoubleProperty(this, "Amount", amount);
+
+    LocalDate parsedDate;
+    try {
+        if (date.length() > 10) {
+            parsedDate = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toLocalDate();
+        } else {
+            parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+    } catch (Exception e) {
+        System.out.println("⚠️ Gagal parse tanggal: " + date);
+        parsedDate = LocalDate.now(); // fallback biar nggak crash
     }
+
+    this.date = new SimpleObjectProperty<>(this, "Date", parsedDate);
+    this.message = new SimpleStringProperty(this, "Message", message);
+}
+
 
     public Transaction(String sender, String receiver, double amount, LocalDate date, String message) {
         this.sender = new SimpleStringProperty(this, "Sender", sender);

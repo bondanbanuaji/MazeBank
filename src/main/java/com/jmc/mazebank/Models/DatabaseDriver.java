@@ -84,27 +84,52 @@ public class DatabaseDriver {
         }
     }
 
-    public List<String> getAllTransactions() {
-        List<String> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM Transactions ORDER BY Date DESC";
+//    public List<String> getAllTransactions() {
+//        List<String> transactions = new ArrayList<>();
+//        String sql = "SELECT * FROM Transactions ORDER BY Date DESC";
+//
+//        try (Connection conn = getConnection();
+//             Statement stmt = conn.createStatement();
+//             ResultSet rs = stmt.executeQuery(sql)) {
+//
+//            while (rs.next()) {
+//                String record = String.format("%s mengirim %,.2f ke %s pada %s",
+//                        rs.getString("Sender"),
+//                        rs.getDouble("Amount"),
+//                        rs.getString("Receiver"),
+//                        rs.getString("Date"));
+//                transactions.add(record);
+//            }
+//        } catch (SQLException e) {
+//            System.err.println("Error mengambil transaksi: " + e.getMessage());
+//        }
+//        return transactions;
+//    }
+//public List<Transaction> getAllTransactions() {
+//    List<Transaction> transactions = new ArrayList<>();
+//    String sql = "SELECT * FROM Transactions ORDER BY Date DESC";
+//
+//    try (Connection conn = getConnection();
+//         Statement stmt = conn.createStatement();
+//         ResultSet rs = stmt.executeQuery(sql)) {
+//
+//        while (rs.next()) {
+//            Transaction tx = new Transaction(
+//                    rs.getString("Sender"),
+//                    rs.getString("Receiver"),
+//                    rs.getDouble("Amount"),
+//                    rs.getString("Message"),
+//                    rs.getString("Date")
+//            );
+//            transactions.add(tx);
+//        }
+//
+//    } catch (SQLException e) {
+//        System.err.println("Error mengambil semua transaksi: " + e.getMessage());
+//    }
+//    return transactions;
+//}
 
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                String record = String.format("%s mengirim %,.2f ke %s pada %s",
-                        rs.getString("Sender"),
-                        rs.getDouble("Amount"),
-                        rs.getString("Receiver"),
-                        rs.getString("Date"));
-                transactions.add(record);
-            }
-        } catch (SQLException e) {
-            System.err.println("Error mengambil transaksi: " + e.getMessage());
-        }
-        return transactions;
-    }
     public List<Transaction> getTransactionsForUser(String username) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM Transactions WHERE Sender = ? OR Receiver = ? ORDER BY Date DESC";

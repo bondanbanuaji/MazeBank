@@ -1,6 +1,7 @@
 package com.jmc.mazebank.Controllers.Client;
 
 import com.jmc.mazebank.Models.DatabaseDriver;
+import com.jmc.mazebank.Models.Model;
 import com.jmc.mazebank.Models.Transaction;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +33,12 @@ public class DashboardController implements Initializable {
     @FXML public TextArea message_fld;
     @FXML public Button send_money_btn;
 
-    private final String currentUser = "You";
+    private String currentUser = Model.getInstance().getClient().pAddressProperty().get();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login_date.setText("Today, " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        user_name.setText("Mr.Heru");
+        user_name.setText("Mr.Baker");
         loadTransactions();
     }
 
@@ -46,7 +47,8 @@ public class DashboardController implements Initializable {
         String payee = payee_fld.getText().trim();
         String amountText = amount_fld.getText().trim();
         String message = message_fld.getText().trim();
-        String sender = currentUser;
+//        String sender = currentUser;
+        String sender = Model.getInstance().getClient().pAddressProperty().get();
         String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         if (payee.isEmpty() || amountText.isEmpty()) {
