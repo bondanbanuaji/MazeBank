@@ -22,15 +22,13 @@ public class Client {
         this.firstName = new SimpleStringProperty(this, "FirstName", fName);
         this.lastName = new SimpleStringProperty(this, "LastName", lName);
         this.payeeAddress = new SimpleStringProperty(this, "Payee Address", pAddress);
-        this.username = new SimpleStringProperty(this, "Username", pAddress); // Dianggap username = payeeAddress
+        this.username = new SimpleStringProperty(this, "Username", pAddress);
         this.checkingAccount = new SimpleObjectProperty<>(this, "Checking Account", cAccount);
         this.savingsAccount = new SimpleObjectProperty<>(this, "Savings Account", sAccount);
         this.dateCreated = new SimpleObjectProperty<>(this, "Date", date);
     }
 
-    public Client(String payeeAddress, String fullName, int balance, StringProperty firstName,
-                  StringProperty lastName, StringProperty payeeAddress1,
-                  ObjectProperty<Account> checkingAccount,
+    public Client(String payeeAddress, String fullName, int balance, StringProperty firstName, StringProperty lastName, StringProperty payeeAddress1, ObjectProperty<Account> checkingAccount,
                   ObjectProperty<Account> savingsAccount,
                   ObjectProperty<LocalDate> dateCreated) {
 
@@ -47,13 +45,32 @@ public class Client {
         this.firstName = new SimpleStringProperty(this, "FirstName", firstName);
         this.lastName = new SimpleStringProperty(this, "LastName", lastName);
         this.payeeAddress = new SimpleStringProperty(this, "Payee Address", payeeAddress);
-        this.username = new SimpleStringProperty(this, "Username", payeeAddress); // Tambahkan ini
+        this.username = new SimpleStringProperty(this, "Username", payeeAddress);
         this.checkingAccount = new SimpleObjectProperty<>(this, "Checking Account", null);
         this.savingsAccount = new SimpleObjectProperty<>(this, "Savings Account", null);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
         LocalDate parsedDate = LocalDate.parse(date, formatter);
         this.dateCreated = new SimpleObjectProperty<>(this, "Date", parsedDate);
+    }
+
+//    public CheckingAccount getCheckingAccount() {
+//        return (CheckingAccount) checkingAccount.get();
+//    }
+//
+//    public SavingsAccount getSavingsAccount() {
+//        return (SavingsAccount) savingsAccount.get();
+//    }
+    public CheckingAccount getCheckingAccount() {
+          return (CheckingAccount) checkingAccount.get();
+    }
+
+    public SavingsAccount getSavingsAccount() {
+        return (SavingsAccount) savingsAccount.get();
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated.get();
     }
 
     public StringProperty firstNameProperty() {

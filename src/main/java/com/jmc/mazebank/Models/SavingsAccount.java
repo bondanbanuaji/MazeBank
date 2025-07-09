@@ -11,5 +11,7 @@ public class SavingsAccount extends Account{
 
         this.withdrawalLimit = new SimpleDoubleProperty(this,"Withdrawal Limit",withdrawalLimit);
     }
-    public DoubleProperty withdrawalLimitProp() {return withdrawalLimit;}
+    public DoubleProperty withdrawalLimitProp() {
+        return withdrawalLimit;
+    }
 }

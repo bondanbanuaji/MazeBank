@@ -15,9 +15,21 @@ public class Account {
         this.accountNumber = new SimpleStringProperty(this,"Account Number",accountNumber);
         this.balance = new SimpleDoubleProperty(this,"Balance",balance);
     }
-    public StringProperty ownerProperty() {return owner;}
+    public StringProperty ownerProperty() {
+        return owner;
+    }
 
-    public StringProperty accountNumberProperty() {return accountNumber;}
+    public StringProperty accountNumberProperty() {
+        return accountNumber;
+    }
 
-    public DoubleProperty balanceProperty() {return balance;}
+    public DoubleProperty balanceProperty() {
+        return balance;
+    }
+    public String getAccountNumber() {
+        return accountNumber.get();
+    }
+    public String getOwner() {
+        return owner.get();
+    }
 }

@@ -7,10 +7,16 @@
     <list default="true" id="881fe0db-9d55-4d11-aafc-322271b9da04" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mazebank.db" beforeDir="false" afterPath="$PROJECT_DIR$/mazebank.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Controllers/Client/AccountsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Controllers/Client/AccountsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Controllers/Client/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Controllers/Client/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/CheckingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/CheckingAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/DatabaseDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/SavingsAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jmc/mazebank/Models/SavingsAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Fxml/Client/Accounts.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Fxml/Client/Accounts.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

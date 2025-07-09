@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class CheckingAccount extends Account{
     // jumlah transaksi yang boleh dilakukan klien per hari
-
     private final IntegerProperty transactionLimit;
 
     public CheckingAccount(String owner ,String accountNumber , double balance ,int tLimit) {
@@ -13,5 +12,7 @@ public class CheckingAccount extends Account{
         this.transactionLimit = new SimpleIntegerProperty(this,"Transaction Limit",tLimit);
     }
 
-    public IntegerProperty transactionLimitProp() {return transactionLimit;}
+    public IntegerProperty transactionLimitProp() {
+        return transactionLimit;
+    }
 }

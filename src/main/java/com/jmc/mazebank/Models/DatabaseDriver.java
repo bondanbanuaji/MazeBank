@@ -129,6 +129,46 @@ public class DatabaseDriver {
 //    }
 //    return transactions;
 //}
+public CheckingAccount getCheckingAccount(String payeeAddress) {
+    String sql = "SELECT * FROM CheckingAccounts WHERE Owner = ?";
+    try (Connection conn = getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, payeeAddress);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new CheckingAccount(
+                    rs.getString("Owner"),
+                    rs.getString("AccountNumber"),
+                    rs.getDouble("Balance"),
+                    rs.getInt("TransactionLimit")
+            );
+        }
+    } catch (SQLException e) {
+        System.err.println("Error getCheckingAccount: " + e.getMessage());
+    }
+    return null;
+}
+
+    public SavingsAccount getSavingsAccount(String payeeAddress) {
+        String sql = "SELECT * FROM SavingsAccounts WHERE Owner = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, payeeAddress);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new SavingsAccount(
+                        rs.getString("Owner"),
+                        rs.getString("AccountNumber"),
+                        rs.getDouble("Balance"),
+                        rs.getDouble("WithdrawalLimit")
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getSavingsAccount: " + e.getMessage());
+        }
+        return null;
+    }
+
 
     public List<Transaction> getTransactionsForUser(String username) {
         List<Transaction> transactions = new ArrayList<>();
@@ -206,4 +246,30 @@ public class DatabaseDriver {
     public Connection connect() throws SQLException {
         return DriverManager.getConnection(DB_URL);
     }
+    public boolean updateCheckingBalance(String accountNumber, double newBalance) {
+        String sql = "UPDATE CheckingAccounts SET Balance = ? WHERE AccountNumber = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setDouble(1, newBalance);
+            stmt.setString(2, accountNumber);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updateCheckingBalance: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateSavingsBalance(String accountNumber, double newBalance) {
+        String sql = "UPDATE SavingsAccounts SET Balance = ? WHERE AccountNumber = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setDouble(1, newBalance);
+            stmt.setString(2, accountNumber);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error updateSavingsBalance: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

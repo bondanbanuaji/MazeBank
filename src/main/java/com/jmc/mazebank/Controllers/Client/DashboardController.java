@@ -40,6 +40,22 @@ public class DashboardController implements Initializable {
         login_date.setText("Today, " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         user_name.setText("Mr.Baker");
         loadTransactions();
+        checking_bal.setText(String.format("$%,.2f",
+                Model.getInstance().getClient().getCheckingAccount().balanceProperty().get()));
+        checking_acc_num.setText(
+                Model.getInstance().getClient().getCheckingAccount().getAccountNumber());
+
+        savings_bal.setText(String.format("$%,.2f",
+                Model.getInstance().getClient().getSavingsAccount().balanceProperty().get()));
+        savings_acc_num.setText(
+                Model.getInstance().getClient().getSavingsAccount().getAccountNumber());
+        Model.getInstance().getClient().getCheckingAccount().balanceProperty().addListener((obs, oldVal, newVal) -> {
+            checking_bal.setText(String.format("$%,.2f", newVal.doubleValue()));
+        });
+        Model.getInstance().getClient().getSavingsAccount().balanceProperty().addListener((obs, oldVal, newVal) -> {
+            savings_bal.setText(String.format("$%,.2f", newVal.doubleValue()));
+        });
+
     }
 
     @FXML

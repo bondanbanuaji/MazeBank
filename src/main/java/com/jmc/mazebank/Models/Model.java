@@ -74,6 +74,10 @@ public class Model {
                 this.client.firstNameProperty().set(resultSet.getString("FirstName"));
                 this.client.lastNameProperty().set(resultSet.getString("LastName"));
                 this.client.pAddressProperty().set(resultSet.getString("PayeeAddress"));
+                CheckingAccount cAccount = databaseDriver.getCheckingAccount(pAddress);
+                SavingsAccount sAccount = databaseDriver.getSavingsAccount(pAddress);
+                this.client.checkingAccountProperty().set(cAccount);
+                this.client.savingsAccountProperty().set(sAccount);
 
                 String dateStr = resultSet.getString("Date");
                 if (dateStr != null) {
